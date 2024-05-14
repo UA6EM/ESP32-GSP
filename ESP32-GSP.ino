@@ -5,8 +5,9 @@
 // Важно!!! Измените настройки на Вашу WIFI сеть в конфигурационном файле
 // Для библиотеки TFT_eSPI приведен конфигурационный файл  для ILI9341
 
+
 //                    Использование GITHUB (если планируете участвовать в написании кода)
-// 1. Клонируйте проект: git clone https://github.com/UA6EM/MPGSP
+// 1. Клонируйте проект: git clone https://github.com/UA6EM/ESP32-GSP
 // 2. Исключите локальный конфигурационный файл из индекса:
 //    git update-index --assume-unchanged config_loc.h
 //   (для отмены git update-index --no-assume-unchanged your_file)
@@ -16,6 +17,7 @@
 
 /*
     Версия:
+    14.05.2024 - Выделил в отдельный проект с веткой SD CARD
     08.05.2024 - Добавил возможности библиотеки GyverHUB ( управление FS)
     07.05.2024 - Добавил возможность работы с файловой системой LittleFS
     24.04.2024 - в работе версия для TFT дисплея
@@ -42,23 +44,13 @@
     StringUtils                                   - https://github.com/GyverLibs/StringUtils
     GSON                                          - https://github.com/GyverLibs/GSON
     Pairs                                         - https://github.com/GyverLibs/Pairs
-
 */
+
 #include <Arduino.h>
 #define GH_INCLUDE_PORTAL
 #define GH_FILE_PORTAL
 #include <GyverHub.h>
 GyverHub hub;
-
-// Определения
-#define WIFI                             // Используем модуль вайфая
-#define DEBUG                            // Замаркировать если не нужны тесты
-//#define LCD_RUS                          // Замаркировать, если скетч для пользователя CIPARS
-#define SECONDS(x) ((x)*1000UL)
-#define MINUTES(x) (SECONDS(x) * 60UL)
-#define HOURS(x) (MINUTES(x) * 60UL)
-#define DAYS(x) (HOURS(x) * 24UL)
-#define WEEKS(x) (DAYS(x) * 7UL)
 
 #define ON_OFF_CASCADE_PIN 32  // Для выключения выходного каскада
 #define PIN_ZUM 33
@@ -74,6 +66,7 @@ GyverHub hub;
 // SD нужную включить, по умолчанию файловая система в SPIFFS
 //#define SD_CARD
 //#define SD_CARD_MMC
+#define WIFI                               // Используем модуль вайфая
 
 #if (defined(ESP32))
 #ifdef WIFI
@@ -81,6 +74,7 @@ GyverHub hub;
 //#include <HTTPClient.h>
 #include <WiFiClient.h>
 #include <ESPmDNS.h>
+const char* host = "ESP32-GSP";
 #endif
 
 #include <stdio.h>
@@ -133,7 +127,7 @@ float encPeriod = 0.05;
 #define  MCP41x1_CS    16  // Define chipselect pin for MCP41010 (CS for Volume)
 #define  MCP41x1_ALC   17  // Define chipselect pin for MCP41010 (CS for ALC)
 
-#define zFreq 2           // Делитель интервала - секунда/2
+#define zFreq 2            // Делитель интервала - секунда/2
 
 // Глобальные переменные
 unsigned long interval = MINUTES(1);
