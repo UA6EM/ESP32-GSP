@@ -2,28 +2,6 @@
 #pragma once
 #include <Arduino.h>
 #include "config.h"
-#include "config_loc.h"
-
-//const char* host = "ESP32-GSP";
-
-// Определения
-#define WIFI                               // Используем модуль вайфая
-#define DEBUG                              // Замаркировать если не нужны тесты
-#define DEBUG_OUTPUT_PORT Serial
-
-#define SD_CARD                           // SD нужную включить, по умолчанию  - SPIFFS
-//#define SD_CARD_MMC
-//#define LITTLEFS
-
-//define TFT_ERR                           // Отключает вывод на экран  - tftDisplay()
-//#define LCD_RUS                          // Замаркировать, если скетч вывод латиницей
-
-#define SECONDS(x) ((x)*1000UL)
-#define MINUTES(x) (SECONDS(x) * 60UL)
-#define HOURS(x) (MINUTES(x) * 60UL)
-#define DAYS(x) (HOURS(x) * 24UL)
-#define WEEKS(x) (DAYS(x) * 7UL)
-
 
 /*
  * static const uint8_t TX = 1;

@@ -38,19 +38,8 @@
     SPI версии 2.0.0
     WiFi версии 2.0.0   
     
-    Для работы GyverHub необходимы библиотеки:    - https://github.com/GyverLibs/GyverHub
-    pubsubclient                                  - https://github.com/knolleary/pubsubclient
-    arduinoWebSockets                             - https://github.com/Links2004/arduinoWebSockets
-    StringUtils                                   - https://github.com/GyverLibs/StringUtils
-    GSON                                          - https://github.com/GyverLibs/GSON
-    Pairs                                         - https://github.com/GyverLibs/Pairs
 */
 
-#include <Arduino.h>
-#define GH_INCLUDE_PORTAL
-#define GH_FILE_PORTAL
-#include <GyverHub.h>
-GyverHub hub;
 
 #define ON_OFF_CASCADE_PIN 32  // Для выключения выходного каскада
 #define PIN_ZUM 33
@@ -64,28 +53,28 @@ GyverHub hub;
 #define  MCP41010MOD            // библиотека с разрешением 255 единиц (аналог MCP4151)
 
 // SD нужную включить, по умолчанию файловая система в SPIFFS
-//#define SD_CARD
-//#define SD_CARD_MMC
-#define WIFI                               // Используем модуль вайфая
+#define SD_CARD
+
+#define DEBUG                              // Замаркировать если не нужны тесты
+#define DEBUG_OUTPUT_PORT Serial
+
+//define TFT_ERR                           // Отключает вывод на экран  - tftDisplay()
+//#define LCD_RUS                          // Замаркировать, если скетч вывод латиницей
+
+#define SECONDS(x) ((x)*1000UL)
+#define MINUTES(x) (SECONDS(x) * 60UL)
+#define HOURS(x) (MINUTES(x) * 60UL)
+#define DAYS(x) (HOURS(x) * 24UL)
+#define WEEKS(x) (DAYS(x) * 7UL)
+
 
 #if (defined(ESP32))
-#ifdef WIFI
-#include <WiFi.h>
-//#include <HTTPClient.h>
-#include <WiFiClient.h>
-#include <ESPmDNS.h>
-const char* host = "ESP32-GSP";
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sqlite3.h>
 
 #include <SPI.h>
 #include <FS.h>
-#include "SPIFFS.h"
-#include "LittleFS.h"
-#include "SD_MMC.h"
 #include "SD.h"
 #include "config.h"
 #include "config_loc.h"
@@ -194,16 +183,6 @@ TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
 
 
 //    *** Используемые подпрограммы выносим сюда ***   //
-// билдер
-void build(gh::Builder& b) {
-
-        {
-            gh::Col c(b);
-            b.Gauge("Power1").value(map(wiperValue,0,255,0,100)).range( 0,100,1).unit("%").color(gh::Colors::Green);
-            b.GaugeLinear().value(12);
-        }
- }
-
 
 /*--------------------------------------------------------------------------
         Timer ISR
@@ -506,9 +485,6 @@ void task0(void* arg)
     //Serial.println(count);
     delay(1);
     //yield();
-    hub.tick();
-    
-   // hub.sendUpdate("Power1"); // не вижу, что идут запросы на обновление, если задействовать
   }
 }
 
@@ -1197,25 +1173,6 @@ void setup() {
   pcnt_counter_pause(PCNT_UNIT_0);
   pcnt_counter_clear(PCNT_UNIT_0);
   pcnt_counter_resume(PCNT_UNIT_0); //Start
-
-
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
-        DEBUG_OUTPUT_PORT.print(".");
-    }
-    DEBUG_OUTPUT_PORT.println();
-    DEBUG_OUTPUT_PORT.println(WiFi.localIP());
-    
-    MDNS.begin(host);
-    DEBUG_OUTPUT_PORT.print("Open http://");
-    DEBUG_OUTPUT_PORT.print(host);
-    DEBUG_OUTPUT_PORT.println(".local");
-
-    hub.config(F("MyDevices"), F(host));
-    hub.onBuild(build);
-    hub.begin();
 } 
 // ********   END  SETUP   ******** //
 
@@ -1223,8 +1180,6 @@ void setup() {
 // ******** ТЕЛО ПРОГРАММЫ ******** //
 void loop() {
   mill = millis();
- // hub.sendUpdate("Power1");
-  
   readButtons();
   
   // ************** Выбор режима церрер ***************//
@@ -1287,8 +1242,6 @@ void loop() {
     tftDisplay();
 #endif
   }
-    //hub.tick();
-   //hub.refresh();
 } // *************** E N D  L O O P **************** //
 
 
