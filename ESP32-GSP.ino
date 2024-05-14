@@ -126,12 +126,12 @@ float encPeriod = 0.05;
 #define SD_CS    5
 
 //MCP41010
-#define  MCP41x1_MISO  19 //19 //12 // Define MISO pin for MCP4131 or MCP41010
-#define  MCP41x1_MOSI  23 //23 //13 // Define MOSI pin for MCP4131 or MCP41010
-#define  MCP41x1_SCK   18 //18 //14 // Define SCK pin for MCP4131 or MCP41010
+#define  MCP41x1_MISO  19 //12 // Define MISO pin for MCP4131 or MCP41010
+#define  MCP41x1_MOSI  23 //13 // Define MOSI pin for MCP4131 or MCP41010
+#define  MCP41x1_SCK   18 //14 // Define SCK pin for MCP4131 or MCP41010
 
 #define  MCP41x1_CS    16  // Define chipselect pin for MCP41010 (CS for Volume)
-#define  MCP41x1_ALC   17 // Define chipselect pin for MCP41010 (CS for ALC)
+#define  MCP41x1_ALC   17  // Define chipselect pin for MCP41010 (CS for ALC)
 
 #define zFreq 2           // Делитель интервала - секунда/2
 
@@ -188,18 +188,10 @@ int currentPotenciometrPercent = 127;
 
 
 //--------------- Create an AD9833 object ----------------
-/*
-  #include <AD9833.h>  // Пробуем новую по ссылкам в README закладке
-  //AD9833 AD(10, 11, 13);     // SW SPI over the HW SPI pins (UNO);
-  //AD9833 Ad9833(AD9833_CS);  // HW SPI Defaults to 25MHz internal reference frequency
-  AD9833 Ad9833(AD9833_CS, AD9833_MOSI, AD9833_SCK); // SW SPI speed 250kHz
-*/
 #include <MD_AD9833.h>
 //MD_AD9833  Ad9833(PIN_FSYNC);  // Hardware SPI
 MD_AD9833  Ad9833(AD9833_MOSI, AD9833_SCK, AD9833_CS); // Arbitrary SPI pins
 
-
-/******* Простой энкодер *******/
 
 // Дисплей TFT ILI-9341
 #define TFT_GREY 0x5AEB
@@ -208,7 +200,6 @@ TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
 
 
 //    *** Используемые подпрограммы выносим сюда ***   //
-
 // билдер
 void build(gh::Builder& b) {
 
@@ -218,6 +209,7 @@ void build(gh::Builder& b) {
             b.GaugeLinear().value(12);
         }
  }
+
 
 /*--------------------------------------------------------------------------
         Timer ISR
@@ -500,6 +492,8 @@ void printStruct() {
 }
 // ******************* КОНЕЦ БЛОКА ФУНКЦИЙ ПО РАБОТЕ С БАЗОЙ  ******************//
 
+
+/******* Простой энкодер *******/
 /*-----------------------------------------------------------------------------------------------
         Alternative Loop (core0)
   ------------------------------------------------------------------------------------------------*/
@@ -586,6 +580,8 @@ int getALC(long freq) {
   return alc;
 }
 
+
+// ***** Автоматическая регулировка усиления в зависимости от частоты (табличная) *****
 void setALC(int setAlc) {
   Alc.writeValue(setAlc);
   delay(10);
@@ -617,7 +613,9 @@ void setAlcFreq(long freq) { // Установка по измеренному �
   delay(10);
 }
 
-// функция выбора времени работы
+
+
+// ***** Функция выбора времени работы в режиме катушки *****
 void setTimer() {
   // если энкодер крутим по часовой
   if (newEncoderPos - currentEncoderPos > 0) {
@@ -645,11 +643,9 @@ void resetPotenciometer() {
 }
 
 // Уровень percent - от 0 до 100% от максимума.
-void setResistance(int percent) {
-  // resetPotenciometer();
-  // for (int i = 0; i < percent; i++) {
+void setResistance(int percent) 
+{
   wiperValue = percent;;
-  // }
   Potentiometer.writeValue(wiperValue);  // Set MCP4151
 }
 
