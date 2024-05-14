@@ -44,23 +44,13 @@
     StringUtils                                   - https://github.com/GyverLibs/StringUtils
     GSON                                          - https://github.com/GyverLibs/GSON
     Pairs                                         - https://github.com/GyverLibs/Pairs
-
 */
+
 #include <Arduino.h>
 #define GH_INCLUDE_PORTAL
 #define GH_FILE_PORTAL
 #include <GyverHub.h>
 GyverHub hub;
-
-// Определения
-#define WIFI                             // Используем модуль вайфая
-#define DEBUG                            // Замаркировать если не нужны тесты
-//#define LCD_RUS                          // Замаркировать, если скетч для пользователя CIPARS
-#define SECONDS(x) ((x)*1000UL)
-#define MINUTES(x) (SECONDS(x) * 60UL)
-#define HOURS(x) (MINUTES(x) * 60UL)
-#define DAYS(x) (HOURS(x) * 24UL)
-#define WEEKS(x) (DAYS(x) * 7UL)
 
 #define ON_OFF_CASCADE_PIN 32  // Для выключения выходного каскада
 #define PIN_ZUM 33
@@ -135,7 +125,7 @@ float encPeriod = 0.05;
 #define  MCP41x1_CS    16  // Define chipselect pin for MCP41010 (CS for Volume)
 #define  MCP41x1_ALC   17  // Define chipselect pin for MCP41010 (CS for ALC)
 
-#define zFreq 2           // Делитель интервала - секунда/2
+#define zFreq 2            // Делитель интервала - секунда/2
 
 // Глобальные переменные
 unsigned long interval = MINUTES(1);
