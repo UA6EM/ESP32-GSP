@@ -40,7 +40,6 @@
     
 */
 
-
 #define ON_OFF_CASCADE_PIN 32  // Для выключения выходного каскада
 #define PIN_ZUM 33
 #define CORRECT_PIN A3         // Пин для внешней корректировки частоты.
