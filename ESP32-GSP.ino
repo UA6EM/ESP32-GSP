@@ -5,12 +5,12 @@
 // Для библиотеки TFT_eSPI приведен конфигурационный файл  для ILI9341
 
 
-//                    Использование GITHUB (если планируете участвовать в написании кода)
+//    Использование GITHUB (если планируете участвовать в написании кода)
 // 1. Клонируйте проект: git clone https://github.com/UA6EM/ESP32-GSP
 // 2. Исключите локальный конфигурационный файл из индекса:
 //    git update-index --assume-unchanged config_loc.h
-//   (для отмены git update-index --no-assume-unchanged your_file)
-// 3. Открыть ветку для SD карточки git checkout sdcard
+//   (для отмены: git update-index --no-assume-unchanged your_file)
+// 3. Открыть ветку для SD карточки: git checkout sdcard
 
 /*
     Версия:
