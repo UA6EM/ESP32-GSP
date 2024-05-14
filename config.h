@@ -3,8 +3,6 @@
 #include <Arduino.h>
 #include "config.h"
 
-const char * ssid = "OpenNet";            // Название WIFI сети
-const char * password = "12345678";    // Пароль от WIFI сети не менее 8-и символов
 const char* host = "ESP32-GSP";
 
 #define WIFI                               // Используем модуль вайфая

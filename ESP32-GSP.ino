@@ -94,6 +94,7 @@ GyverHub hub;
 #include "SD_MMC.h"
 #include "SD.h"
 #include "config.h"
+#include "config_loc.h"
 #include "driver/pcnt.h"
 #include "Arduino.h"
 #include "si5351.h"
