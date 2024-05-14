@@ -7,8 +7,8 @@
 
 //                    Использование GITHUB (если планируете участвовать в написании кода)
 // 1. Клонируйте проект: git clone https://github.com/UA6EM/MPGSP
-// 2. Исключите конфигурационный файл из индекса:
-//    git update-index --assume-unchanged ESP32_MCP41010/config.h
+// 2. Исключите локальный конфигурационный файл из индекса:
+//    git update-index --assume-unchanged config_loc.h
 //   (для отмены git update-index --no-assume-unchanged your_file)
 // 3. Исправьте конфигурацию в соответствии с вашей сетью
 //    Изменения в этом файле на локальном компьютере теперь
