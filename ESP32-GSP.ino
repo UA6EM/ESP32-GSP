@@ -1,8 +1,7 @@
-// Генератор для катушки Мишина на основе DDS AD9833 для ESP32 экран LCD
+// Генератор для катушки Мишина на основе DDS AD9833 и SI5351 для ESP32, экран TFT 240х320 ILI9341
 // Partition Scheme: NO OTA (2MB APP, 2MB SPIFFS)
 // При компиляции, в настройках IDE оключить все уведомления
 // иначе вылетит по ошибке на sqlite3
-// Важно!!! Измените настройки на Вашу WIFI сеть в конфигурационном файле
 // Для библиотеки TFT_eSPI приведен конфигурационный файл  для ILI9341
 
 
@@ -11,9 +10,7 @@
 // 2. Исключите локальный конфигурационный файл из индекса:
 //    git update-index --assume-unchanged config_loc.h
 //   (для отмены git update-index --no-assume-unchanged your_file)
-// 3. Исправьте конфигурацию в соответствии с вашей сетью
-//    Изменения в этом файле на локальном компьютере теперь
-//    не попадут на GITHUB
+// 3. Открыть ветку для SD карточки git checkout sdcard
 
 /*
     Версия:
@@ -32,12 +29,11 @@
     AD9833-mpgsp версии 0.4.0                    - https://github.com/UA6EM/AD9833/tree/mpgsp
                                                  - https://github.com/madhephaestus/ESP32Encoder
     esp32_arduino_sqlite3_lib-master версии 2.4  - https://github.com/siara-cc/esp32_arduino_sqlite3_lib
-    Wire версии 2.0.0
+    Wire версии   2.0.0
     SPIFFS версии 2.0.0
-    FS версии 2.0.0
-    SPI версии 2.0.0
-    WiFi версии 2.0.0   
-    
+    FS версии     2.0.0
+    SPI версии    2.0.0
+    WiFi версии   2.0.0    
 */
 
 #define ON_OFF_CASCADE_PIN 32  // Для выключения выходного каскада
