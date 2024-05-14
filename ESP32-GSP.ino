@@ -75,6 +75,7 @@
 #include <SPI.h>
 #include <FS.h>
 #include "SD.h"
+#include "SPIFFS.h"
 #include "config.h"
 #include "config_loc.h"
 #include "driver/pcnt.h"
@@ -385,6 +386,8 @@ String querySig = "SELECT * FROM modessig WHERE id = ";
 
 #ifdef SD_CARD
 const char* DBName = "/sd/standard1.db";
+//const char* DBName = "/sd/standard.db";
+//const char* DBName = "/sd/zepper.db";
 #else
 #ifdef SD_CARD_MMC
 const char* DBName = "/sdcard/standard1.db";
@@ -859,10 +862,8 @@ int readSqlDB() {
   SD_MMC.begin();
 #else
 #ifdef SD_CARD
-  //SPI.begin(-1,-1,-1,SD_CS);
+  SPI.begin(-1,-1,-1,SD_CS);
   SD.begin(SD_CS);
-  //SPI.begin();
-  //SD.begin();
 #else
 #ifdef LITTLEFS
 if (!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)) {
