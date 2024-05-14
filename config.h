@@ -9,9 +9,9 @@ const char* host = "ESP32-GSP";
 #define DEBUG                              // Замаркировать если не нужны тесты
 #define DEBUG_OUTPUT_PORT Serial
 
-//#define SD_CARD                          // SD нужную включить, по умолчанию SPIFFS
+#define SD_CARD                           // SD нужную включить, по умолчанию SPIFFS
 //#define SD_CARD_MMC
-#define LITTLEFS
+//#define LITTLEFS
 
 //define TFT_ERR                           // Отключает вывод на экран  - tftDisplay()
 //#define LCD_RUS                          // Замаркировать, если скетч вывод латиницей
