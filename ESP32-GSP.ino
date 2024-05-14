@@ -66,6 +66,7 @@ GyverHub hub;
 // SD нужную включить, по умолчанию файловая система в SPIFFS
 //#define SD_CARD
 //#define SD_CARD_MMC
+#define WIFI                               // Используем модуль вайфая
 
 #if (defined(ESP32))
 #ifdef WIFI
@@ -73,6 +74,7 @@ GyverHub hub;
 //#include <HTTPClient.h>
 #include <WiFiClient.h>
 #include <ESPmDNS.h>
+const char* host = "ESP32-GSP";
 #endif
 
 #include <stdio.h>

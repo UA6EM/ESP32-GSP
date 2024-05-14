@@ -2,8 +2,9 @@
 #pragma once
 #include <Arduino.h>
 #include "config.h"
+#include "config_loc.h"
 
-const char* host = "ESP32-GSP";
+//const char* host = "ESP32-GSP";
 
 // Определения
 #define WIFI                               // Используем модуль вайфая
