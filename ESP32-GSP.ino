@@ -29,6 +29,9 @@
     AD9833-mpgsp версии 0.4.0                    - https://github.com/UA6EM/AD9833/tree/mpgsp
                                                  - https://github.com/madhephaestus/ESP32Encoder
     esp32_arduino_sqlite3_lib-master версии 2.4  - https://github.com/siara-cc/esp32_arduino_sqlite3_lib
+    SI5351                                       - https://github.com/etherkit/Si5351Arduino/tree/master/src
+    TFTeSPI                                      - https://github.com/Bodmer/TFT_eSPI
+                                                 
     Wire версии   2.0.0
     SPIFFS версии 2.0.0
     FS версии     2.0.0
