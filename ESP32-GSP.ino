@@ -24,13 +24,14 @@
     Ai_Esp32_Rotary_Encoder-1.6.0                - https://www.arduino.cc/reference/en/libraries/ai-esp32-rotary-encoder/
     LiquidCrystal_I2C-master версии 1.1.4        - https://github.com/UA6EM/LiquidCrystal_I2C
     LCD_1602_RUS-master версии 1.0.5             - https://github.com/UA6EM/LCD_1602_RUS
-    Ticker версии 2.0.                           - https://www.arduino.cc/reference/en/libraries/ticker/
+    Ticker версии 2.0.0                          - https://www.arduino.cc/reference/en/libraries/ticker/
     MCP4xxxx-ua6em версии 0.2                    - https://github.com/UA6EM/MCP4xxxx
     AD9833-mpgsp версии 0.4.0                    - https://github.com/UA6EM/AD9833/tree/mpgsp
                                                  - https://github.com/madhephaestus/ESP32Encoder
     esp32_arduino_sqlite3_lib-master версии 2.4  - https://github.com/siara-cc/esp32_arduino_sqlite3_lib
-    SI5351                                       - https://github.com/etherkit/Si5351Arduino/tree/master/src
-    TFTeSPI                                      - https://github.com/Bodmer/TFT_eSPI
+    SI5351  2.1.4                                - https://github.com/etherkit/Si5351Arduino/tree/master/src
+    TFTeSPI 2.5.43                               - https://github.com/Bodmer/TFT_eSPI
+    MD_AD9833  1.2.4                             - https://github.com/UA6EM/MD_AD9833
                                                  
     Wire версии   2.0.0
     SPIFFS версии 2.0.0
