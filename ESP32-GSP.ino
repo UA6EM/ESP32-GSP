@@ -377,7 +377,7 @@ char buffers[33];
 
 int numerInTable = 1;
 
-// Строки запроса к таблица (заготовка) к ней добавляется id
+// Строки запроса к таблице (заготовка) к ней добавляется id
 String queryFreq = "SELECT * FROM frequencys WHERE id = ";
 String queryExpo = "SELECT * FROM expositions WHERE id = ";
 String queryPause = "SELECT * FROM pauses WHERE id = ";
@@ -385,8 +385,8 @@ String queryGen = "SELECT * FROM modesgen WHERE id = ";
 String querySig = "SELECT * FROM modessig WHERE id = ";
 
 #ifdef SD_CARD
-const char* DBName = "/sd/standard1.db";
-//const char* DBName = "/sd/standard.db";
+//const char* DBName = "/sd/standard1.db";
+const char* DBName = "/sd/standard.db";
 //const char* DBName = "/sd/zepper.db";
 #else
 #ifdef SD_CARD_MMC
